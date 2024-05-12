@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Test</title>
+</head>
+<body>
+    <h1>Personality Test</h1>
+    <form id="personalityTest">
+        <p>Question 1: How do you prefer to spend your free time?</p>
+        <input type="radio" id="q1a1" name="q1" value="Outdoor">
+        <label for="q1a1">Exploring outdoors</label><br>
+        <input type="radio" id="q1a2" name="q1" value="Reading">
+        <label for="q1a2">Reading books</label><br>
+        <input type="radio" id="q1a3" name="q1" value="Games">
+        <label for="q1a3">Playing video games</label><br>
+
+        <p>Question 2: Which of these describes you best?</p>
+        <input type="radio" id="q2a1" name="q2" value="Creative">
+        <label for="q2a1">Creative</label><br>
+        <input type="radio" id="q2a2" name="q2" value="Analytical">
+        <label for="q2a2">Analytical</label><br>
+        <input type="radio" id="q2a3" name="q2" value="Energetic">
+        <label for="q2a3">Energetic</label><br>
+
+        <button type="button" onclick="evaluateTest()">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        function evaluateTest() {
+            const results = document.getElementById("result");
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+
+            if (!q1 || !q2) {
+                results.innerHTML = "<p>Please answer all questions.</p>";
+                return;
+            }
+
+            let personality = "Adventurer";
+            if (q1.value === "Reading" && q2.value === "Analytical") {
+                personality = "Thinker";
+            } else if (q1.value === "Games" && q2.value === "Energetic") {
+                personality = "Gamer";
+            }
+
+            results.innerHTML = `<p>Your personality type: ${personality}</p>`;
+        }
+    </script>
+</body>
+</html>
